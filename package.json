@@ -1,0 +1,12 @@
+{
+    "name": "package-local-test",
+    "version": "1.0.6",
+    "description": "Testing global installs",
+    "main": "index.js",
+    "author": "Mariusz Nowak <medyk@medikoo.com> (https://www.medikoo.com/)",
+    "engines": {
+        "node": ">=12.0"
+    },
+    "engineStrict": true,
+    "license": "ISC"
+}
