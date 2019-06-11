@@ -1,3 +1,3 @@
 "use strict";
 
-console.log("local version", require("./package").version);
+console.log("Local version", require("./package").version);
