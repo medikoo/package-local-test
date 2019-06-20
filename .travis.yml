@@ -26,4 +26,4 @@ jobs:
           script:
               - ls -la
               - git status
-              - git tag foo && git push --tags
+              - git tag foo && git push -q https://$GITHUB_TOKEN@github.com/medikoo/package-local-test --tags
