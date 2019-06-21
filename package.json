@@ -3,7 +3,7 @@
     "version": "1.0.8",
     "description": "Testing global installs",
     "bin": {
-        "package-local-test": "bin/package-local-test"
+        "package-local-test": "bin/package-local-test.js"
     },
     "author": "Mariusz Nowak <medyk@medikoo.com> (https://www.medikoo.com/)",
     "license": "ISC"
