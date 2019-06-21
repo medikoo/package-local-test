@@ -2,7 +2,9 @@
     "name": "package-local-test",
     "version": "1.0.7",
     "description": "Testing global installs",
-    "main": "index.js",
+    "bin": {
+        "package-local-test": "bin/package-local-test"
+    },
     "author": "Mariusz Nowak <medyk@medikoo.com> (https://www.medikoo.com/)",
     "license": "ISC"
 }
