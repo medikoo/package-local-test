@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.0.7](///compare/v1.0.6...v1.0.7) (2019-06-11)
 
-### Bug Fixes
+### Bug Fixesd
 
 - casing ca2036f
 
