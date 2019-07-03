@@ -10,24 +10,17 @@ branches:
 
 before_script:
     - echo "before_script"
-    - set -e
+    - set -o errexit
 
 stages:
-    - name: Test
     - name: Deploy
 
 jobs:
     include:
-        # master branch
-        - name: "Test - Node.js v12"
-          if: branch = master AND type = push
-          node_js: 12
-          script:
-              - ls -la .git
-
         - stage: Deploy
           node_js: 12
           script: skip
+          after_deploy: ls -la .
           deploy:
               provider: npm
               email: medikoo+npm@medikoo.com
