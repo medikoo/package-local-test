@@ -10,7 +10,7 @@ branches:
 
 before_script:
     - echo "before_script"
-    - set -o errexit
+    - set -e
 
 stages:
     - name: Test
