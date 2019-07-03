@@ -1,12 +1,16 @@
 language: node_js
 
 git:
-    depth: 11
+    depth: 10
 
 branches:
     only:
         - master # Do not build PR branches
         - /^v\d+\.\d+\.\d+$/ # Ensure to build release tags
+
+before_script:
+    - echo "before_script"
+    - set -o errexit
 
 stages:
     - name: Test
@@ -17,8 +21,6 @@ jobs:
         # master branch
         - name: "Test - Node.js v12"
           if: branch = master AND type = push
-          env:
-              - secure: "SkOfCgP58BUhuBu2T4RJHCESl2hNU40NUg7Pa8PW/QgXbnczT0hBGAkoO1pWPkcU672qsCH66ATcmPgeAtAvIouxygh2yNOK1WXsmgpn/3Bdq4XufL/ESjRymPIu/FLbvcvkUGzUwTp1RH2ASiRNWB54RAoiOW6umI04QTrzjk8w/MoFHRvYlf7glJG2f4U3Z9cR/rSRFPMGpGukXl81okTaCbeGkj8f3JyKwcviwpcQhF+u9En2GG95BQyWevdWVaNfqST0fllMdMM5wD+8AlpN3cS0slzREU/9qbOt2v4RpVmQrokhPE+9WYXOB1MlbUKXSl/yzTxPF62Q9bcobO/m6pG+Rtvcc6EvcgYo2XEbPhpZbwx0yqrLInbzviBMr5i42iQ9CPOhTcd71zUmL1EdSNHw1/N5vyc8AYyjzdM2xhLFoe8pg+um8F3KRbpFwX+FTeLVk8DJg6U8ZyuEMXN3cIVF6UqcOnvipZXiRs3knViafEMSlXMjZoNoVXJXDTa79HTes28gjsZRFY6kogESmSV528yDhYUX/SjTxDNFq0d2SyR5R2U5YLTshFi7z+/DXYDK/F+UbOKxL8pe6D1YpHq/vG3eV90UDOxaqU5OpMuMbQO7GOW8DcqLVZ64UspG1PPsGP/JjB3kdZpzPnziJIMXA8TWSyTG8DZTrs4="
           node_js: 12
           script:
               - ls -la .git
@@ -27,11 +29,9 @@ jobs:
           node_js: 12
           script: skip
           after_deploy:
-              - echo $?
               - node ./crash.js after_deploy
               - node ./crash.js after_deploy
           after_script:
-              - echo $?
               - node ./crash.js after_script
               - node ./crash.js after_script
           deploy:
