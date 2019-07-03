@@ -30,9 +30,6 @@ jobs:
         - stage: Deploy
           node_js: 12
           script: skip
-          before_deploy:
-              - node ./crash.js before_deploy
-              - node ./crash.js before_deploy
           after_deploy:
               - node ./crash.js after_deploy
               - node ./crash.js after_deploy
