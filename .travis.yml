@@ -29,8 +29,7 @@ jobs:
 
         - stage: Deploy
           node_js: 12
-          script: skip
-          before_deploy: node ./crash.js
+          script: node ./crash.js
           deploy:
               provider: npm
               email: mariusz@medikoo.com
