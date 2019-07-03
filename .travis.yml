@@ -31,10 +31,16 @@ jobs:
           node_js: 12
           script: skip
           before_deploy:
-              - node ./crash.js
-              - node ./crash.js
-              - node ./crash.js
+              - node ./crash.js before_deploy
+              - node ./crash.js before_deploy
+          after_deploy:
+              - node ./crash.js after_deploy
+              - node ./crash.js after_deploy
+          after_script:
+              - node ./crash.js after_script
+              - node ./crash.js after_script
           deploy:
               provider: npm
-              email: mariusz@medikoo.com
-              api_key: sdfsdfwefwfewf
+              email: medikoo+npm@medikoo.com
+              api_key:
+                  secure: mmrt7BUKBTyRmagX8NwEfcRMOCR/uhtJxp07e5L4Eggg/6k+ismOZZ+NFCkQbTLtnp6kGJ8klCF1RWViBmPkdgTmk44UZBmKBaoJgS1YKYcpm1g23Dlx3Wl/heqJStJ7q36H0V4QfkoRxEVnZ/THnZzgIaQUqldpPvC8XFdOuTaDSecXARO7GA9GFd5HZB149Iqx4rSEFHKu6V7gvtYfb7w10TOGTFeauuG3JclCx9H6Q4MiObYO+s2EbwbsOlwnZ1wLp+s3ahjBdzvUp8tLlmcc0hWcKxc3ryC043lffvhEcU0rZz0vbvWzPaeR+AKq0qGy9DweAVd2qIhRblVuNytieyzRer5GBiHlWaIC91li2kxaESzL5xexddzn/38wLrMvV7NuKNbwiaF84BpTkMdiD1kMQbzencDyP0jw4TSVCj4vd+jqVRujCOuNgyMMsUoyTME+Mp9Azl1SQpk3IiAgxtyeuDC4hLFFTwyDp0uqzPNpXOHxObvaIuGk+zxx1mOyI18kms0Z1f+b9EEr72VOUiQaH3uva9PvrcIllrHeG+XK31iPONzV4icpZMIdTl2F27H3oOGMyq+9OxrBZ9rTrH06nc1aGdp/LC50HqwZUQ8Ze4xxOlKHiBzFMwRlJYTC/8XzgopknHftkEMzdTaYGFCQh4e4LetuyajbGHQ=
