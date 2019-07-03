@@ -27,9 +27,11 @@ jobs:
           node_js: 12
           script: skip
           after_deploy:
+              - echo $?
               - node ./crash.js after_deploy
               - node ./crash.js after_deploy
           after_script:
+              - echo $?
               - node ./crash.js after_script
               - node ./crash.js after_script
           deploy:
