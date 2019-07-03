@@ -20,7 +20,7 @@ jobs:
         - stage: Deploy
           node_js: 12
           script: skip
-          after_deploy: ls -la .
+          after_deploy: ls -la dpl
           deploy:
               provider: npm
               email: medikoo+npm@medikoo.com
