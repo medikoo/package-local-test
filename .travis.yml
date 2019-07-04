@@ -21,9 +21,12 @@ jobs:
           node_js: 12
           script: skip
           skip_cleanup: true
+          before_deploy:
+              - rm -rf ~/.npm/_logs
           after_deploy:
-              - ls -la ~/.npm/
-              - ls -la ~/.npm/_logs
+              - cd ~/.npm/_logs
+              - ls -la
+              - ls -1 | xargs cat
           deploy:
               provider: npm
               email: medikoo+npm@medikoo.com
