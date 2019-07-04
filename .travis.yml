@@ -9,7 +9,7 @@ branches:
         - /^v\d+\.\d+\.\d+$/ # Ensure to build release tags
 
 before_script:
-    - set -o errexit
+    - set -e
     - echo "before_script"
 
 stages:
@@ -24,7 +24,6 @@ jobs:
           before_deploy:
               - rm -rf ~/.npm/_logs
           after_deploy:
-              - set -o errexit
               - cwd=`pwd`
               - cd ~/.npm/_logs
               - ls -la
