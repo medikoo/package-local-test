@@ -1,5 +1,7 @@
 
 set -o errexit
-node ./crash.js
-node ./crash.js
-echo "Foo"
+
+
+if [ -d ~/.npm/_logs ]; then
+  echo "there is"
+fi

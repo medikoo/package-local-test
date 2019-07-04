@@ -21,7 +21,7 @@ jobs:
         - rm -rf ~/.npm/_logs
       after_deploy:
         - |
-          if [ -d "~/.npm/_logs" ]; then
+          if [ -d ~/.npm/_logs ]; then
             travis_terminate 1
           fi
 
