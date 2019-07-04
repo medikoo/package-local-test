@@ -15,18 +15,8 @@ jobs:
   include:
     - stage: Deploy
       node_js: 12
-      before_script:
-        - set -e
-      script:
-        - set +e
-        - node ./crash.js script
-        - set -e
-        - node ./crash.js script
-        - node ./crash.js script
-      after_failure:
-        - node ./crash.js after_failure
+      script: skip
       before_deploy:
-        - set -o errexit
         - rm -rf ~/.npm/_logs
       after_deploy:
         - |
