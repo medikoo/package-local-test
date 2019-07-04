@@ -24,6 +24,7 @@ jobs:
           before_deploy:
               - rm -rf ~/.npm/_logs
           after_deploy:
+              - set -o errexit
               - cwd=`pwd`
               - cd ~/.npm/_logs
               - ls -la
