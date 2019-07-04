@@ -1,6 +1,6 @@
 {
     "name": "package-local-test",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "Testing global installs",
     "bin": {
         "package-local-test": "bin/package-local-test.js"
