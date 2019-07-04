@@ -20,8 +20,7 @@ jobs:
         - stage: Deploy
           node_js: 12
           script:
-              - node ./crash.js script
-              - node ./crash.js script
+              - ls -la .
           after_success:
               - node ./crash.js after_success
               - node ./crash.js after_success
