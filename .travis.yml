@@ -9,7 +9,7 @@ branches:
         - /^v\d+\.\d+\.\d+$/ # Ensure to build release tags
 
 before_script:
-    - set -e
+    - set -o errexit
     - echo "before_script"
 
 stages:
@@ -19,7 +19,9 @@ jobs:
     include:
         - stage: Deploy
           node_js: 12
-          script: skip
+          script:
+              - node ./crash.js script
+              - node ./crash.js script
           skip_cleanup: true
           before_deploy:
               - rm -rf ~/.npm/_logs
