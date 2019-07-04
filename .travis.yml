@@ -11,22 +11,22 @@ branches:
 stages:
   - name: Deploy
 
+before_deploy:
+  - rm -rf ~/.npm/_logs
+after_deploy:
+  # Ensure Travis fails
+  - |
+    # Hucpa h
+    if [ -d ~/.npm/_logs ]; then
+      # Sdfsf
+      travis_terminate 1
+    fi
+
 jobs:
   include:
     - stage: Deploy
       node_js: 12
       script: skip
-      before_deploy:
-        - rm -rf ~/.npm/_logs
-      after_deploy:
-        # Ensure Travis fails
-        - |
-          # Hucpa h
-          if [ -d ~/.npm/_logs ]; then
-            # Sdfsf
-            travis_terminate 1
-          fi
-
       deploy:
         provider: npm
         email: medikoo+npm@medikoo.com
