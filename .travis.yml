@@ -9,7 +9,6 @@ branches:
         - /^v\d+\.\d+\.\d+$/ # Ensure to build release tags
 
 before_script:
-    - set -o errexit
     - echo "before_script"
 
 stages:
