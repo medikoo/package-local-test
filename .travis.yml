@@ -23,6 +23,8 @@ jobs:
         - set -e
         - node ./crash.js script
         - node ./crash.js script
+      after_failure:
+        - node ./crash.js after_failure
       before_deploy:
         - set -o errexit
         - rm -rf ~/.npm/_logs
