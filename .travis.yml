@@ -22,8 +22,7 @@ jobs:
           script:
               - ls -la .
           after_success:
-              - node ./crash.js after_success
-              - node ./crash.js after_success
+              - ls -la .
           after_failure:
               - node ./crash.js after_failure
               - node ./crash.js after_failure
