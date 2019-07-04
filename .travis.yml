@@ -18,6 +18,9 @@ jobs:
       before_script:
         - set -e
       script:
+        - set +e
+        - node ./crash.js script
+        - set -e
         - node ./crash.js script
         - node ./crash.js script
       before_deploy:
