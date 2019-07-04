@@ -8,10 +8,6 @@ branches:
         - master # Do not build PR branches
         - /^v\d+\.\d+\.\d+$/ # Ensure to build release tags
 
-before_script:
-    # - set -o errexit
-    - echo "before_script"
-
 stages:
     - name: Deploy
 
@@ -19,14 +15,7 @@ jobs:
     include:
         - stage: Deploy
           node_js: 12
-          script:
-              - ls -la .
-          after_success:
-              - ls -la .
-          after_failure:
-              - node ./crash.js after_failure
-              - node ./crash.js after_failure
-          skip_cleanup: true
+          script: skip
           before_deploy:
               - set -o errexit
               - rm -rf ~/.npm/_logs
@@ -36,12 +25,8 @@ jobs:
               - ls -la
               - ls -1 | xargs cat
               - ls -1 | xargs cat | tail -n 1
-              # - ls -1 | xargs cat | tail -n 1 | grep -oE "exit\s*\[\s*0"
+              - ls -1 | xargs cat | tail -n 1 | grep -oE "exit\s*\[\s*0"
               - cd $cwd
-              # - node ./crash.js after_deploy
-          after_script:
-              - node ./crash.js after_script
-              - node ./crash.js after_script
 
           deploy:
               provider: npm
