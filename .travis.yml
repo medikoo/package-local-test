@@ -13,6 +13,7 @@ stages:
 
 before_deploy:
   - rm -rf ~/.npm/_logs
+  - cd foo
 after_deploy:
   # Ensure Travis fails
   - |
