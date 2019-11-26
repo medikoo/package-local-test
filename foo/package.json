@@ -5,6 +5,10 @@
 	"bin": {
 		"package-local-test": "bin/package-local-test.js"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/medikoo/es5-ext/tree/ext"
+	},
 	"author": "Mariusz Nowak <medyk@medikoo.com> (https://www.medikoo.com/)",
 	"license": "ISC"
 }
