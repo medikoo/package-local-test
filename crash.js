@@ -1,3 +1,5 @@
+// foo
+
 "use strict";
 
 console.log(Date.now(), process.argv.slice(2));
