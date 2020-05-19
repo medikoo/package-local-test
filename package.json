@@ -1,7 +1,7 @@
 {
 	"name": "package-local-test",
 	"version": "1.0.14",
-	"description": "Testing global installs",
+	"description": "Testing npm installs",
 	"bin": {
 		"package-local-test": "bin/package-local-test.js"
 	},
@@ -10,5 +10,20 @@
 		"url": "https://github.com/medikoo/es5-ext#ext"
 	},
 	"author": "Mariusz Nowak <medyk@medikoo.com> (https://www.medikoo.com/)",
+	"eslintConfig": {
+		"extends": "medikoo/node",
+		"root": true,
+		"rules": {
+			"no-console": "off"
+		}
+	},
+	"scripts": {
+		"lint": "eslint ."
+	},
+	"devDependencies": {
+		"eslint": "^7.0.0",
+		"eslint-config-medikoo": "^3.0.1",
+		"git-list-updated": "^1.2.1"
+	},
 	"license": "ISC"
 }
