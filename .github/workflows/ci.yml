@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: last-validated-commit-hash
+      - run: cat last-validated-commit-hash
       - run: echo $GITHUB_SHA > last-validated-commit-hash
       - uses: actions/upload-artifact@v2
         with:
