@@ -9,7 +9,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     env:
-      - GET_LAST_VALIDATED_COMMIT_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_URL }}
+      GET_LAST_VALIDATED_COMMIT_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_URL }}
     steps:
       - uses: actions/checkout@v2
       - run: LAST_VALIDATED_COMMIT_HASH=$(curl "$GET_LAST_VALIDATED_COMMIT_URL")
