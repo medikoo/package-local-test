@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: pwd
-      - run: curl "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o last-validated-commit-hash
-      - run: cat last-validated-commit-hash
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "14.x"
-      - run: npm install
-      - run: npm run lint
+      - run: curl "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/last-validated-commit-hash
+      - run: cat /home/last-validated-commit-hash
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: "14.x"
+      # - run: npm install
+      # - run: npm run lint
