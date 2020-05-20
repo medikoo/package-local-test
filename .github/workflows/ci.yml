@@ -9,12 +9,12 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     env:
-      GET_LAST_VALIDATED_COMMIT_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_URL }}
+      GET_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_URL }}
     steps:
       - uses: actions/checkout@v2
-      - run: LAST_VALIDATED_COMMIT_HASH=foo
-      - run: echo $LAST_VALIDATED_COMMIT_HASH > test
-      - run: cat test
+      - run: pwd
+      - run: curl "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o last-validated-commit-hash
+      - run: cat last-validated-commit-hash
       - uses: actions/setup-node@v1
         with:
           node-version: "14.x"
