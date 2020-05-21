@@ -16,6 +16,7 @@ jobs:
       - run: pwd
       - run: |
           curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
+          curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
       - run: cat /home/runner/last-validated-commit-hash
       # - uses: actions/setup-node@v1
       #   with:
