@@ -3,20 +3,41 @@ name: ci/cd
 on:
   push:
     branches: [master]
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
-  lint:
-    name: Lint
+  tagNewVersion:
+    name: Tag new version
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     env:
       GET_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_HASH_URL }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PUT_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.PUT_LAST_VALIDATED_COMMIT_HASH_URL }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 30
       - run: |
           curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
           curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
-      - run: cat /home/runner/last-validated-commit-hash
+      - uses: actions/cache@v1
+        with:
+          path: |
+            ~/.npm
+            node_modules
+      - run: |
+          LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
+          if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
+          then
+            NEW_VERSION=`git diff $LAST_VALIDATED_COMMIT_HASH package.json | grep '"version": "' | tail -n 1 | grep -oE "[0-9]+\.[0-9]+\.[0-9]+"` || :
+            if [ -n "$NEW_VERSION" ];
+            then
+              git tag v$NEW_VERSION
+              git push https://$GITHUB_TOKEN@github.com/medikoo/package-local-test --tags
+            fi
+          fi
       # - uses: actions/setup-node@v1
       #   with:
       #     node-version: "14.x"
