@@ -24,7 +24,6 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       # Publish new version
-      - name: Publish new version
-        run: echo $RUNNER_TEMP
-        run: cat $RUNNER_TEMP/.npmrc
-        run: npm publish
+      - run: echo $RUNNER_TEMP
+      - run: cat $RUNNER_TEMP/.npmrc
+      - run: npm publish
