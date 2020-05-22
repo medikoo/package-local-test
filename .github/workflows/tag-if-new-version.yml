@@ -25,7 +25,8 @@ jobs:
       # Note: Last validated hash is needed resolve pushed commits range
       - run: |
           curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
-          curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL" 
+          curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
+      - run: |
           LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
           if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
           then
