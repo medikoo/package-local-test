@@ -67,7 +67,7 @@ jobs:
           echo "BAR"
           npm update --save-dev --no-save
           echo $RUNNER_TEMP
-          cat .npmrc
+          cat $RUNNER_TEMP/.npmrc
   # publishNewVersion:
   #   name: Publish new version
   #   if: startsWith(github.ref, 'refs/tags/v')
