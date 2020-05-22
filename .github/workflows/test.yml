@@ -12,6 +12,7 @@ jobs:
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
+      - run: echo $NODE_AUTH_TOKEN | base64
       # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -24,7 +25,9 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       # Publish new version
-      - run: echo $NODE_AUTH_TOKEN
-      - run: npm publish
+      - run: echo $NODE_AUTH_TOKEN | base64
+      - run: |
+          echo $NODE_AUTH_TOKEN | base64
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
