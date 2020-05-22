@@ -1,6 +1,6 @@
 {
 	"name": "package-local-test",
-	"version": "1.0.25",
+	"version": "1.0.26",
 	"description": "Testing npm installs",
 	"bin": {
 		"package-local-test": "bin/package-local-test.js"
