@@ -13,7 +13,7 @@ jobs:
   validateProposal:
     name: Validate proposal
     if: startsWith(github.ref, 'refs/pull/')
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
     steps:
       # Checkout repository
       - uses: actions/checkout@v2
