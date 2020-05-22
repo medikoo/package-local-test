@@ -7,7 +7,7 @@ on:
 
 jobs:
   publishNewVersion:
-    name: Publish new version
+    name: Test
     runs-on: ubuntu-latest
     env:
       USER_GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
@@ -20,7 +20,6 @@ jobs:
       # Publish new version
       - run: echo $USER_GITHUB_TOKEN | base64
       - run: |
-          echo $GITHUB_TOKEN | base64
-          echo $USER_GITHUB_TOKEN | base64
-          git tag v1.0.21
+          GITHUB_TOKEN=$USER_GITHUB_TOKEN
+          git tag v1.0.22
           git push https://$USER_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY --tags
