@@ -24,6 +24,7 @@ jobs:
           curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
       - uses: actions/cache@v1
         with:
+          key: ${{ runner.os }}-npm
           path: |
             ~/.npm
             node_modules
