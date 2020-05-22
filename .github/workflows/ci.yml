@@ -26,6 +26,10 @@ jobs:
         with:
           key: ${{ runner.os }}-npm
           path: ~/.npm
+      # - uses: actions/cache@v1
+      #   with:
+      #     key: ${{ runner.os }}-node-modules
+      #     path: node_modules
       - run: |
           LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
           if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
@@ -37,8 +41,8 @@ jobs:
               git push https://$GITHUB_TOKEN@github.com/medikoo/package-local-test --tags
             fi
           fi
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: "14.x"
-      # - run: npm install
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - run: npm install
       # - run: npm run lintelo
