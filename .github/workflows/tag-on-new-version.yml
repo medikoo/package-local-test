@@ -8,6 +8,7 @@ on:
 jobs:
   # master only
   tagOnNewVersion:
+    name: ""
     runs-on: ubuntu-latest
     env:
       GET_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_HASH_URL }}
