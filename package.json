@@ -23,7 +23,8 @@
 	"devDependencies": {
 		"eslint": "^7.0.0",
 		"eslint-config-medikoo": "^3.0.1",
-		"git-list-updated": "^1.2.1"
+		"git-list-updated": "^1.2.1",
+		"prettier-elastic": "^1.19.1"
 	},
 	"license": "ISC"
 }
