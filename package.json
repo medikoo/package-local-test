@@ -17,13 +17,33 @@
 			"no-console": "off"
 		}
 	},
+	"prettier": {
+		"printWidth": 100,
+		"tabWidth": 4,
+		"overrides": [
+			{
+				"files": [
+					"*.{yml,md}"
+				],
+				"options": {
+					"tabWidth": 2
+				}
+			}
+		]
+	},
 	"scripts": {
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"lint:updated": "pipe-git-updated --ext=js -- eslint",
+		"prettier-check": "prettier -c --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
+		"prettier-check:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier -c",
+		"prettify": "prettier --write --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
+		"prettify:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier --write"
 	},
 	"devDependencies": {
 		"eslint": "^7.0.0",
 		"eslint-config-medikoo": "^3.0.1",
-		"git-list-updated": "^1.2.1"
+		"git-list-updated": "^1.2.1",
+		"prettier-elastic": "^1.19.1"
 	},
 	"license": "ISC"
 }
