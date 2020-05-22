@@ -34,7 +34,7 @@ jobs:
           key: node-modules-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
           restore-keys: |
             node-modules-${{ runner.os }}-${{ github.ref }}-
-            node_modules-${{ runner.os }}-refs/heads/master-
+            node-modules-${{ runner.os }}-refs/heads/master-
 
       # Setup Node.js & npm
       - uses: actions/setup-node@v1
