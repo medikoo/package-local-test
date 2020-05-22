@@ -9,17 +9,16 @@ jobs:
   publishNewVersion:
     name: Test
     runs-on: ubuntu-latest
-    env:
-      USER_GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
     steps:
-      - run: echo $USER_GITHUB_TOKEN | base64
       # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
       # Publish new version
-      - run: echo $USER_GITHUB_TOKEN | base64
+      - run: echo $GITHUB_TOKEN | base64
       - run: |
-          GITHUB_TOKEN=$USER_GITHUB_TOKEN
-          git tag v1.0.22
-          git push https://$USER_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY --tags
+          echo $GITHUB_TOKEN | base64
+          git tag v1.0.23
+          git push --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
