@@ -11,10 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checkout repository
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       # Ensure to have working git diff against master
-      - run: |
+      - name: Retrieve last master commit (for `git diff` purposes)
+        run: |
           git checkout -b pr
           git fetch --prune --depth=1 origin +refs/heads/master:refs/remotes/origin/master
           git checkout master
@@ -41,8 +43,10 @@ jobs:
         with:
           node-version: 14.x
 
-      - run: npm update --no-save
-      - run: npm update --save-dev --no-save
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: npm update --no-save
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: npm update --save-dev --no-save
       - run: npm run prettier-check:updated
       - run: npm run lint:updated
       - run: git status
