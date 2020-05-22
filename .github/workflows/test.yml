@@ -18,9 +18,8 @@ jobs:
 
       # Publish new version
       - run: echo $GITHUB_TOKEN | base64
+      - run: echo $GITHUB_ACTOR
       - run: |
-          echo $GITHUB_ACTOR
-          echo $GITHUB_TOKEN | base64
           git tag v1.0.24
           git push --tags
         env:
