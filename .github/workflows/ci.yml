@@ -25,12 +25,12 @@ jobs:
       - uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm3-{{ hashFiles('package.json') }}
+          key: ${{ runner.os }}-npm3-${{ hashFiles('package.json') }}
           restore-keys: ${{ runner.os }}-npm3-
       - uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules2-{{ hashFiles('package.json') }}
+          key: ${{ runner.os }}-node-modules2-${{ hashFiles('package.json') }}
           restore-keys: ${{ runner.os }}-node_modules2-
       - run: |
           LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
@@ -46,5 +46,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "14.x"
-      - run: npm install
-      # - run: npm run lintelo
+      - run: |
+          npm update --no-save
+          npm update --save-dev --no-save
