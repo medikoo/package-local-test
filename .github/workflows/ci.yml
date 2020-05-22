@@ -57,10 +57,12 @@ jobs:
         with:
           node-version: "14.x"
 
-      - run: cat ~/.npmrc
       # Install dependencies
       - run: |
+          echo "FOO"
           npm update --no-save
+          mkdir foo/foo/foo
+          echo "BAR"
           npm update --save-dev --no-save
   # publishNewVersion:
   #   name: Publish new version
