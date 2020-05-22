@@ -48,10 +48,11 @@ jobs:
           node-version: 14.x
 
       - name: Install production dependencies
-        run: npm update --no-save  --verbose
+        if: steps.cacheNodeModules.outputs.cache-hit != 'true'
+        run: npm update --no-save
       - name: Install development dependencies
         if: steps.cacheNodeModules.outputs.cache-hit != 'true'
-        run: npm update --save-dev --no-save --verbose
+        run: npm update --save-dev --no-save
       - name: Validate Prettier formatting
         run: npm run prettier-check:updated
       - name: Validate ESLint rules
