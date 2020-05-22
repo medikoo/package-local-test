@@ -23,14 +23,16 @@ jobs:
           git checkout pr
 
       # Ensure to cache ~/.npm and node_modules
-      - uses: actions/cache@v1
+      - name: Retrieve ~/.npm from cache
+        uses: actions/cache@v1
         with:
           path: ~/.npm
           key: npm-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
           restore-keys: |
             npm-${{ runner.os }}-${{ github.ref }}-
             npm-${{ runner.os }}-refs/heads/master-
-      - uses: actions/cache@v1
+      - name: Retrieve node_modules from cache
+        uses: actions/cache@v1
         with:
           path: node_modules
           key: node-modules-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
@@ -39,15 +41,17 @@ jobs:
             node-modules-${{ runner.os }}-refs/heads/master-
 
       # Setup Node.js & npm
-      - uses: actions/setup-node@v1
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v1
         with:
           node-version: 14.x
 
-      - if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install production dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm update --no-save
-      - if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install development dependencies
         run: npm update --save-dev --no-save
-      - run: npm run prettier-check:updated
-      - run: npm run lint:updated
-      - run: git status
-      - run: cat package.json
+      - name: Validate Prettier formatting
+        run: npm run prettier-check:updated
+      - name: Validate ESLint rules
+        run: npm run lint:updated
