@@ -31,7 +31,7 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules2-${{ hashFiles('package.json') }}
-          restore-keys: ${{ runner.os }}-node_modules2-
+          restore-keys: ${{ runner.os }}-node-modules2-
       - run: |
           LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
           if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
