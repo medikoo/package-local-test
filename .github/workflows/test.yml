@@ -1,0 +1,30 @@
+# Version tags only
+name: Test
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  publishNewVersion:
+    name: Publish new version
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Setup Node.js & npm
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          registry-url: https://registry.npmjs.org
+
+      # Publish new version
+      - name: Publish new version
+        run: echo $RUNNER_TEMP
+        run: cat $RUNNER_TEMP/.npmrc
+        run: npm publish

@@ -3,7 +3,7 @@ name: Tag if new version
 
 on:
   push:
-    branches: [master]
+    branches: [master2]
 
 jobs:
   # master only
