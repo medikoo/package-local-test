@@ -16,12 +16,18 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PUT_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.PUT_LAST_VALIDATED_COMMIT_HASH_URL }}
     steps:
+      # Checkout repository
       - uses: actions/checkout@v2
         with:
           fetch-depth: 30
+
+      # Resolve last validated commit hash (and store current as last validated)
+      # Note: Last validated hash is needed resolve pushed commits range
       - run: |
           curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
           curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
+
+      # Ensure to cache ~/.npm and node_modules
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -32,6 +38,8 @@ jobs:
           path: node_modules
           key: node-modules-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
           restore-keys: node-modules-${{ runner.os }}-${{ github.ref }}-
+
+      # If "version" in package.json was bumped in pushed commits range tag new version
       - run: |
           LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
           if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
@@ -43,9 +51,20 @@ jobs:
               git push https://$GITHUB_TOKEN@github.com/medikoo/package-local-test --tags
             fi
           fi
+
+      # Setup Node.js
       - uses: actions/setup-node@v1
         with:
           node-version: "14.x"
+
+      - run: cat ~/.npmrc
+      # Install dependencies
       - run: |
           npm update --no-save
           npm update --save-dev --no-save
+  # publishNewVersion:
+  #   name: Publish new version
+  #   if: startsWith(github.ref, 'refs/tags/v')
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     NPM_API_KEY: ${{ secrets.NPM_API_KEY }}
