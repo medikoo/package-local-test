@@ -23,7 +23,7 @@ jobs:
           node-version: 14.x
           registry-url: https://registry.npmjs.org
 
-      # Publish new version
+      # Publish new versio
       - run: echo $RUNNER_TEMP
       - run: cat $RUNNER_TEMP/.npmrc
       - run: npm publish
