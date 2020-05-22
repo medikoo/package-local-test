@@ -26,6 +26,10 @@ jobs:
         with:
           key: ${{ runner.os }}-npm2
           path: ~/.npm
+      - uses: actions/cache@v1
+        with:
+          key: ${{ runner.os }}-node-modules
+          path: node_modules
       # - uses: actions/cache@v1
       #   with:
       #     key: ${{ runner.os }}-node-modules
