@@ -48,9 +48,9 @@ jobs:
 
       - name: Install production dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm update --no-save
+        run: npm update --no-save  --verbose
       - name: Install development dependencies
-        run: npm update --save-dev --no-save
+        run: npm update --save-dev --no-save --verbose
       - name: Validate Prettier formatting
         run: npm run prettier-check:updated
       - name: Validate ESLint rules
