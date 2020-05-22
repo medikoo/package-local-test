@@ -45,4 +45,6 @@ jobs:
         with:
           node-version: "14.x"
       - run: npm install
+      - run: ls -la /home/runner
+      - run: ls -la /home/runner/.npm
       # - run: npm run lintelo
