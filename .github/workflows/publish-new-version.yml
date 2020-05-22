@@ -1,0 +1,25 @@
+# Version tags only
+name: ci/cd
+
+on:
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+
+jobs:
+  publishNewVersion:
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      # Checkout repository
+      - uses: actions/checkout@v2
+
+      # Setup Node.js & npm
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          registry-url: https://registry.npmjs.org
+
+      # Publish new version
+      - run: npm publish

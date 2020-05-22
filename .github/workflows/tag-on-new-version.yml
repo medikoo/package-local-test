@@ -1,0 +1,37 @@
+# master only
+name: Tag on new version
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  # master only
+  tagOnNewVersion:
+    runs-on: ubuntu-latest
+    env:
+      GET_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_HASH_URL }}
+      PUT_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.PUT_LAST_VALIDATED_COMMIT_HASH_URL }}
+    steps:
+      # Checkout repository
+      - uses: actions/checkout@v2
+        with:
+          # Ensure to have complete history of commits pushed with given push operation
+          # It's loose and imperfect assumption that no more than 30 commits will be pushed at once
+          fetch-depth: 30
+
+      # Resolve last validated commit hash (and store current as last validated)
+      # Note: Last validated hash is needed resolve pushed commits range
+      - run: |
+          curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
+          curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL" 
+          LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
+          if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
+          then
+            NEW_VERSION=`git diff $LAST_VALIDATED_COMMIT_HASH package.json | grep '"version": "' | tail -n 1 | grep -oE "[0-9]+\.[0-9]+\.[0-9]+"` || :
+            if [ -n "$NEW_VERSION" ];
+            then
+              git tag v$NEW_VERSION
+              git push --tags
+            fi
+          fi
