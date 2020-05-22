@@ -24,12 +24,14 @@ jobs:
           curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
       - uses: actions/cache@v1
         with:
-          key: ${{ runner.os }}-npm2
           path: ~/.npm
+          key: ${{ runner.os }}-npm3-{{ hashFiles('package.json') }}
+          restore-keys: ${{ runner.os }}-npm3-
       - uses: actions/cache@v1
         with:
-          key: ${{ runner.os }}-node-modules
           path: node_modules
+          key: ${{ runner.os }}-node-modules2-{{ hashFiles('package.json') }}
+          restore-keys: ${{ runner.os }}-node_modules2-
       # - uses: actions/cache@v1
       #   with:
       #     key: ${{ runner.os }}-node-modules
@@ -49,6 +51,4 @@ jobs:
         with:
           node-version: "14.x"
       - run: npm install
-      - run: ls -la /home/runner
-      - run: ls -la /home/runner/.npm
       # - run: npm run lintelo
