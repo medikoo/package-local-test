@@ -13,6 +13,7 @@ jobs:
     env:
       GET_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_HASH_URL }}
       PUT_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.PUT_LAST_VALIDATED_COMMIT_HASH_URL }}
+      USER_GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
     steps:
       # Checkout repository
       - name: Checkout repository
@@ -37,6 +38,6 @@ jobs:
             if [ -n "$NEW_VERSION" ];
             then
               git tag v$NEW_VERSION
-              git push --tags
+              git push https://$USER_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY --tags
             fi
           fi
