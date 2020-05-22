@@ -1,5 +1,5 @@
 # master only
-name: Tag on new version
+name: Tag if new version
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
 
 jobs:
   # master only
-  tagOnNewVersion:
-    name: ""
+  tagIfNewVersion:
+    name: Tag if new version
     runs-on: ubuntu-latest
     env:
       GET_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_HASH_URL }}

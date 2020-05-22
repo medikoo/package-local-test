@@ -1,5 +1,5 @@
 # Version tags only
-name: ci/cd
+name: Publish new version
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   publishNewVersion:
+    name: Publish new version
     runs-on: ubuntu-latest
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
