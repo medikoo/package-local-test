@@ -10,24 +10,17 @@ jobs:
     name: Publish new version
     runs-on: ubuntu-latest
     env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      USER_GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
     steps:
-      - run: echo $NODE_AUTH_TOKEN | base64
+      - run: echo $USER_GITHUB_TOKEN | base64
       # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Setup Node.js & npm
-      - name: Install Node.js and npm
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-          registry-url: https://registry.npmjs.org
-
       # Publish new version
-      - run: echo $NODE_AUTH_TOKEN | base64
+      - run: echo $USER_GITHUB_TOKEN | base64
       - run: |
-          echo $NODE_AUTH_TOKEN | base64
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          echo $GITHUB_TOKEN | base64
+          echo $USER_GITHUB_TOKEN | base64
+          git tag v1.0.21
+          git push https://$USER_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY --tags

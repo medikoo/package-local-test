@@ -10,8 +10,6 @@ jobs:
   publishNewVersion:
     name: Publish new version
     runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       # Checkout repository
       - name: Checkout repository
@@ -27,3 +25,7 @@ jobs:
       # Publish new version
       - name: Publish new version
         run: npm publish
+        # Note: Setting NODE_AUTH_TOKEN as job|workspace wide env var won't work
+        #       as it appears actions/setup-node sets own value
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
