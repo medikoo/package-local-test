@@ -4,6 +4,7 @@ name: Tag if new version
 on:
   push:
     branches: [master]
+    paths: [package.json]
 
 jobs:
   # master only
