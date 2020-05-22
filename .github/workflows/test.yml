@@ -26,4 +26,5 @@ jobs:
       # Publish new version
       - run: echo $RUNNER_TEMP
       - run: cat $RUNNER_TEMP/.npmrc
+      - run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
       - run: npm publish
