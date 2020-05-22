@@ -3,7 +3,7 @@ name: Tag if new version
 
 on:
   push:
-    branches: [master2]
+    branches: [master]
 
 jobs:
   # master only
@@ -22,6 +22,8 @@ jobs:
           # Ensure to have complete history of commits pushed with given push operation
           # It's loose and imperfect assumption that no more than 30 commits will be pushed at once
           fetch-depth: 30
+          # Tag needs to be pushed with real user token, otherwise pushed tag won't trigger the actions workflow
+          token: ${{ secrets.USER_GITHUB_TOKEN }}
 
       # Resolve last validated commit hash (and store current as last validated)
       # Note: Last validated hash is needed resolve pushed commits range
@@ -38,6 +40,6 @@ jobs:
             if [ -n "$NEW_VERSION" ];
             then
               git tag v$NEW_VERSION
-              git push https://$USER_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY --tags
+              git push --tags
             fi
           fi
