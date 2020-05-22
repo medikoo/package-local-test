@@ -19,6 +19,8 @@ jobs:
       # Checkout repository
       - uses: actions/checkout@v2
         with:
+          # Ensure to have complete history of commits pushed with given push operation
+          # It's loose and imperfect assumption that no more than 30 commits will be pushed at once
           fetch-depth: 30
 
       # Resolve last validated commit hash (and store current as last validated)
@@ -39,7 +41,7 @@ jobs:
           key: node-modules-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
           restore-keys: node-modules-${{ runner.os }}-${{ github.ref }}-
 
-      # If "version" in package.json was bumped in pushed commits range tag new version
+      # If "version" in package.json was bumped in pushed commits range then tag new version
       - run: |
           LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
           if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
@@ -64,7 +66,8 @@ jobs:
           npm update --no-save
           echo "BAR"
           npm update --save-dev --no-save
-          cat ~/.npmrc
+          echo $RUNNER_TEMP
+          cat .npmrc
   # publishNewVersion:
   #   name: Publish new version
   #   if: startsWith(github.ref, 'refs/tags/v')
