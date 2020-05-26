@@ -1,12 +1,12 @@
 # master only
-name: Tag if new version
+
+name: Integrate
 
 on:
   push:
     branches: [master]
 
 jobs:
-  # master only
   tagIfNewVersion:
     name: Tag if new version
     runs-on: ubuntu-latest
@@ -15,7 +15,6 @@ jobs:
       PUT_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.PUT_LAST_VALIDATED_COMMIT_HASH_URL }}
       USER_GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
     steps:
-      # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
@@ -25,8 +24,6 @@ jobs:
           # Tag needs to be pushed with real user token, otherwise pushed tag won't trigger the actions workflow
           token: ${{ secrets.USER_GITHUB_TOKEN }}
 
-      # Resolve last validated commit hash (and store current as last validated)
-      # Note: Last validated hash is needed resolve pushed commits range
       - name: Resolve last validated commit hash (for `git diff` purposes)
         run: |
           curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
