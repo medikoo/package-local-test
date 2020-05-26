@@ -31,8 +31,6 @@ jobs:
           echo '' >> .npmignore
           # Ensure to not publish .github folder
           echo '/.github' >> .npmignore
-          # Ensure to not publish .gitignore file
-          echo '/.gitignore' >> .npmignore
           echo '\n.npmignore content:'
           cat .npmignore
           echo '\n.gitignore content:'
