@@ -33,6 +33,8 @@ jobs:
           echo $'/.github' >> .npmignore
           # Ensure to not publish .gitignore file
           echo $'/.gitignore' >> .npmignore
+          cat .npmignore
+          cat .gitignore
           npm publish
         # Note: Setting NODE_AUTH_TOKEN as job|workspace wide env var won't work
         #       as it appears actions/setup-node sets own value
