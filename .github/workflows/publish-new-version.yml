@@ -24,7 +24,18 @@ jobs:
 
       # Publish new version
       - name: Publish new version
-        run: npm publish
+        run: |
+          # Ensure new line after eventual existing .npmignore rules (which may miss EOL at EOF)
+          echo $'' >> .npmignore
+          # Ensure all .gitignore rules to be reflected in .npmignore
+          cat .gitignore >> .npmignore
+          # Ensure new line after .gitignore propagation (we may miss EOL at EOF)
+          echo $'' >> .npmignore
+          # Ensure to not publish .github folder
+          echo $'/.github' >> .npmignore
+          # Ensure to not publish .gitignore file
+          echo $'/.gitignore' >> .npmignore
+          npm publish
         # Note: Setting NODE_AUTH_TOKEN as job|workspace wide env var won't work
         #       as it appears actions/setup-node sets own value
         env:
