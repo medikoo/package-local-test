@@ -21,7 +21,7 @@ jobs:
           # It's loose and imperfect assumption that no more than 30 commits will be pushed at once
           fetch-depth: 30
           # Tag needs to be pushed with real user token, otherwise pushed tag won't trigger the actions workflow
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.USER_GITHUB_TOKEN }}
 
       - name: Resolve last validated commit hash (for `git diff` purposes)
         run: |
