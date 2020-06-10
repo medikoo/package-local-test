@@ -1,6 +1,6 @@
 {
 	"name": "package-local-test",
-	"version": "1.0.31",
+	"version": "1.0.32",
 	"description": "Testing npm installs",
 	"bin": {
 		"package-local-test": "bin/package-local-test.js"
@@ -43,6 +43,7 @@
 		"eslint": "^7.0.0",
 		"eslint-config-medikoo": "^3.0.1",
 		"git-list-updated": "^1.2.1",
+		"github-release-from-cc-changelog": "^2.2.0",
 		"prettier-elastic": "^1.19.1"
 	},
 	"license": "ISC"
