@@ -12,7 +12,7 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
+      CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
