@@ -49,6 +49,7 @@ jobs:
     needs: [tagIfNewVersion]
     steps:
       - uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: last-validated-commit-hash
           path: /home/runner
