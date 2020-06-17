@@ -51,4 +51,5 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: last-validated-commit-hash
+          path: /home/runner/last-validated-commit-hash
       - run: cat /home/runner/last-validated-commit-hash
