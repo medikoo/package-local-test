@@ -39,3 +39,9 @@ jobs:
               git push --tags
             fi
           fi
+
+  testAfter:
+    runs-on: ubuntu-latest
+    needs: [tagIfNewVersion]
+    steps:
+      run: cat /home/runner/last-validated-commit-hash
