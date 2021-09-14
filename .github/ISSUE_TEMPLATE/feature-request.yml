@@ -1,0 +1,23 @@
+name: 🎉 Feature request
+description: Suggest an idea
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists
+      options:
+        - label: I have searched the existing issues, and found it's not reported yet
+          required: true
+  - type: textarea
+    attributes:
+      label: Use case description
+      description: Describe the problem (use case) that needs to be solved
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed solution (optional)
+      description: |
+        e.g. propose how the configuration of the new feature could look
+      render: markdown
