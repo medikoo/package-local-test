@@ -3,7 +3,7 @@ description: Create a bug report
 body:
   - type: checkboxes
     attributes:
-      label: Are you certain there's a bug in a Framework?
+      label: Are you certain there's a bug in the Framework?
       description: If you're uncertain, please report at https://github.com/serverless/serverless/discussions instead
       options:
         - label: Yes it looks as a definite bug
