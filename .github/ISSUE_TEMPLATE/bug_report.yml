@@ -10,10 +10,10 @@ body:
           required: true
   - type: checkboxes
     attributes:
-      label: Is the issue in the Framework itself, or maybe it's influenced by external plugin?
-      description: If it comes from the plugin, please report at given plugin bug tracker
+      label: Is the issue in the Framework itself, or maybe it's influenced by some external plugin?
+      description: If it comes from the plugin, please report at given plugin issue tracker
       options:
-        - label: It looks as an issue in Framework itself
+        - label: It looks as an issue in the Framework itself
           required: true
   - type: checkboxes
     attributes:
@@ -22,3 +22,20 @@ body:
       options:
         - label: Yes, I'm using latest version
           required: true
+  - type: checkboxes
+    attributes:
+      label: Is there no existing issue for this?
+      description: Please search to see if an issue already exists
+      options:
+        - label: I have searched the existing issues, and found it's not reported yet
+          required: true
+  - type: textarea
+    attributes:
+      label: Complete `serverless.yml` content
+      description: |
+        Provide  FULL content of serverless.yml, ensuring that:
+        • It consistently reproduces described issue
+        • It's as minimal as possible
+        • There's no plugins involved (plugin related issues need to be reported at plugin repositories)
+        • Has sensitive parts masked out
+      render: yaml
