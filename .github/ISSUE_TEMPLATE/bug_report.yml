@@ -20,11 +20,11 @@ body:
       label: Are you using latest version of the Framework
       description: Latest version can be checked at https://github.com/serverless/serverless/releases/latest
       options:
-        - label: Yes, I'm using latest version
+        - label: Yes, I'm using the latest version
           required: true
   - type: checkboxes
     attributes:
-      label: Is there no existing issue for this?
+      label: Is there an existing issue for this?
       description: Please search to see if an issue already exists
       options:
         - label: I have searched the existing issues, and found it's not reported yet
@@ -53,9 +53,7 @@ body:
     attributes:
       label: Command name and used flags
       description: |
-        Full command name with used flags
-
-        If not applicable, fill with "N/A"
+        Full command name with used flags (If not applicable, fill with "N/A")
       placeholder: serverless <command name> [...flags]
     validations:
       required: true
@@ -63,8 +61,7 @@ body:
     attributes:
       label: Command output
       description: |
-        COMPLETE command output
-        Note: Ensure SLS_DEBUG=* env var for verbose debug output
+        COMPLETE command output. Ensure SLS_DEBUG=* env var for verbose debug output
 
         If not applicable, fill with "N/A"
       render: shell
