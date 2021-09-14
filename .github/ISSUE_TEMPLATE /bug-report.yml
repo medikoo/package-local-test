@@ -32,7 +32,6 @@ body:
   - type: textarea
     attributes:
       label: Issue description
-      render: markdown
     validations:
       required: true
   - type: textarea
