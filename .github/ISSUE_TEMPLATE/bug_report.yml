@@ -73,7 +73,7 @@ body:
   - type: textarea
     attributes:
       label: Environment information
-      description: "serverless --version:" output
+      description: '"serverless --version" output'
       render: shell
     validations:
       required: true
