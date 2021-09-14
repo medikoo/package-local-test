@@ -31,11 +31,49 @@ body:
           required: true
   - type: textarea
     attributes:
-      label: Complete `serverless.yml` content
+      label: Issue description
+      render: markdown
+      validations:
+        required: true
+  - type: textarea
+    attributes:
+      label: Service configuration (serverless.yml) content
       description: |
-        Provide  FULL content of serverless.yml, ensuring that:
+        Provide  COMPLETE content of serverless.yml, ensuring that:
         • It consistently reproduces described issue
         • It's as minimal as possible
-        • There's no plugins involved (plugin related issues need to be reported at plugin repositories)
+        • Ideally with no plugins involved (plugin related issues need to be reported at plugin repositories)
         • Has sensitive parts masked out
+
+        If not applicable, fill with "N/A"
       render: yaml
+      validations:
+        required: true
+  - type: input
+    attributes:
+      label: Command name and used flags
+      description: |
+        Full command name with used flags
+
+        If not applicable, fill with "N/A"
+      placeholder: serverless <command name> [...flags]
+      validations:
+        required: true
+  - type: textarea
+    attributes:
+      label: Command output
+      description: |
+        COMPLETE command output
+        Note: Ensure SLS_DEBUG=* env var for verbose debug output
+
+        If not applicable, fill with "N/A"
+      render: shell
+      validations:
+        required: true
+  - type: textarea
+    attributes:
+      label: Environment information
+      description: "serverless --version:" output
+      render: shell
+      validations:
+        required: true
