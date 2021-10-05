@@ -53,4 +53,4 @@ jobs:
         with:
           name: last-validated-commit-hash
           path: /home/runner
-      - run: cat /home/runner/last-validated-commit-hashx
+      - run: cat /home/runner/last-validated-commit-hash
