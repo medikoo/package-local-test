@@ -27,13 +27,15 @@ jobs:
       #   run: |
       #     curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
       #     curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
-      - run: echo "${{ github.event.workflow_run.id }}"
-      - name: Download Artifacts from Previous Workflow
-        uses: synergy-au/download-workflow-artifacts-action@v1
-        with:
-          # You can get this from the workflow_run event. A workflow run ID is required.
-          workflow-run-id: ${{ github.event.workflow_run.id }}
-      - run: cat /home/runner/last-validated-commit-hash
+      # - run: echo "${{ github.event.workflow_run.id }}"
+      - name: Test previous action
+        uses: medikoo/previous-commit-hash-action@main
+      # - name: Download Artifacts from Previous Workflow
+      #   uses: synergy-au/download-workflow-artifacts-action@v1
+      #   with:
+      #     # You can get this from the workflow_run event. A workflow run ID is required.
+      #     workflow-run-id: ${{ github.event.workflow_run.id }}
+      # - run: cat /home/runner/last-validated-commit-hash
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: last-validated-commit-hash
