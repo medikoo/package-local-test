@@ -33,7 +33,9 @@ jobs:
         uses: medikoo/previous-commit-hash-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo  ${{ steps.previousCommitHash.outputs.previousCommitHash }}
+      - env:
+          PREVIOUS_COMMIT_HASH: ${{ steps.previousCommitHash.outputs.previousCommitHash }}
+        run: echo $PREVIOUS_COMMIT_HASH
   #     # - name: Download Artifacts from Previous Workflow
   #     #   uses: synergy-au/download-workflow-artifacts-action@v1
   #     #   with:
