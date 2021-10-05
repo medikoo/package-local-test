@@ -23,21 +23,21 @@ jobs:
       #     # Tag needs to be pushed with real user token, otherwise pushed tag won't trigger the actions workflow
       #     token: ${{ secrets.USER_GITHUB_TOKEN }}
 
-  #     # - name: Resolve last validated commit hash (for `git diff` purposes)
-  #     #   run: |
-  #     #     curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
-  #     #     curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
-  #     # - run: echo "${{ github.event.workflow_run.id }}"
-  #     - name: Test previous action
-  #       uses: medikoo/previous-commit-hash-action@main
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
+      #     # - name: Resolve last validated commit hash (for `git diff` purposes)
+      #     #   run: |
+      #     #     curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
+      #     #     curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
+      #     # - run: echo "${{ github.event.workflow_run.id }}"
+      - name: Test previous action
+        uses: medikoo/previous-commit-hash-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: cat /home/runner/previous-validated-commit-hash
   #     # - name: Download Artifacts from Previous Workflow
   #     #   uses: synergy-au/download-workflow-artifacts-action@v1
   #     #   with:
   #     #     # You can get this from the workflow_run event. A workflow run ID is required.
   #     #     workflow-run-id: ${{ github.event.workflow_run.id }}
-  #     - run: cat /home/runner/previous-validated-commit-hash
   #     - run: echo $LAST_VALIDATED_COMMIT_HASH
   #     # - uses: actions/upload-artifact@v2
   #     #   with:
