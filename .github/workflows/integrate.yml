@@ -37,8 +37,7 @@ jobs:
       #   with:
       #     # You can get this from the workflow_run event. A workflow run ID is required.
       #     workflow-run-id: ${{ github.event.workflow_run.id }}
-      - run: cat /home/runner/last-validated-commit-hash
-      - run: echo $LAST_VALIDATED_COMMIT_HASH
+      - run: cat /home/runner/previous-validated-commit-hash
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: last-validated-commit-hash
