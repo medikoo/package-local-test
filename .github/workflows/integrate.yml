@@ -14,55 +14,55 @@ jobs:
       GET_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.GET_LAST_VALIDATED_COMMIT_HASH_URL }}
       PUT_LAST_VALIDATED_COMMIT_HASH_URL: ${{ secrets.PUT_LAST_VALIDATED_COMMIT_HASH_URL }}
     steps:
-      # - name: Checkout repository
-      #   uses: actions/checkout@v2
-      #   with:
-      #     # Ensure to have complete history of commits pushed with given push operation
-      #     # It's loose and imperfect assumption that no more than 30 commits will be pushed at once
-      #     fetch-depth: 30
-      #     # Tag needs to be pushed with real user token, otherwise pushed tag won't trigger the actions workflow
-      #     token: ${{ secrets.USER_GITHUB_TOKEN }}
-
-      # - name: Resolve last validated commit hash (for `git diff` purposes)
-      #   run: |
-      #     curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
-      #     curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
-      # - run: echo "${{ github.event.workflow_run.id }}"
-      - name: Test previous action
-        uses: medikoo/previous-commit-hash-action@main
+      - name: Checkout repository
+        uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Download Artifacts from Previous Workflow
-      #   uses: synergy-au/download-workflow-artifacts-action@v1
-      #   with:
-      #     # You can get this from the workflow_run event. A workflow run ID is required.
-      #     workflow-run-id: ${{ github.event.workflow_run.id }}
-      - run: cat /home/runner/previous-validated-commit-hash
-      - run: echo $LAST_VALIDATED_COMMIT_HASH
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: last-validated-commit-hash
-      #     path: /home/runner/last-validated-commit-hash
-      # - name: Tag if new version
-      #   run: |
-      #     LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
-      #     if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
-      #     then
-      #       NEW_VERSION=`git diff -U0 $LAST_VALIDATED_COMMIT_HASH package.json | grep '"version": "' | tail -n 1 | grep -oE "[0-9]+\.[0-9]+\.[0-9]+"` || :
-      #       if [ -n "$NEW_VERSION" ];
-      #       then
-      #         git tag v$NEW_VERSION
-      #         git push --tags
-      #       fi
-      #     fi
+          # Ensure to have complete history of commits pushed with given push operation
+          # It's loose and imperfect assumption that no more than 30 commits will be pushed at once
+          fetch-depth: 30
+          # Tag needs to be pushed with real user token, otherwise pushed tag won't trigger the actions workflow
+          token: ${{ secrets.USER_GITHUB_TOKEN }}
 
-  # testAfter:
-  #   runs-on: ubuntu-latest
-  #   needs: [tagIfNewVersion]
-  #   steps:
-  #     - uses: actions/download-artifact@v2
-  #       continue-on-error: true
+  #     # - name: Resolve last validated commit hash (for `git diff` purposes)
+  #     #   run: |
+  #     #     curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
+  #     #     curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
+  #     # - run: echo "${{ github.event.workflow_run.id }}"
+  #     - name: Test previous action
+  #       uses: medikoo/previous-commit-hash-action@main
   #       with:
-  #         name: last-validated-commit-hash
-  #         path: /home/runner
-  #     - run: cat /home/runner/last-validated-commit-hash
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #     # - name: Download Artifacts from Previous Workflow
+  #     #   uses: synergy-au/download-workflow-artifacts-action@v1
+  #     #   with:
+  #     #     # You can get this from the workflow_run event. A workflow run ID is required.
+  #     #     workflow-run-id: ${{ github.event.workflow_run.id }}
+  #     - run: cat /home/runner/previous-validated-commit-hash
+  #     - run: echo $LAST_VALIDATED_COMMIT_HASH
+  #     # - uses: actions/upload-artifact@v2
+  #     #   with:
+  #     #     name: last-validated-commit-hash
+  #     #     path: /home/runner/last-validated-commit-hash
+  #     # - name: Tag if new version
+  #     #   run: |
+  #     #     LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
+  #     #     if [ -n "$LAST_VALIDATED_COMMIT_HASH" ];
+  #     #     then
+  #     #       NEW_VERSION=`git diff -U0 $LAST_VALIDATED_COMMIT_HASH package.json | grep '"version": "' | tail -n 1 | grep -oE "[0-9]+\.[0-9]+\.[0-9]+"` || :
+  #     #       if [ -n "$NEW_VERSION" ];
+  #     #       then
+  #     #         git tag v$NEW_VERSION
+  #     #         git push --tags
+  #     #       fi
+  #     #     fi
+
+  # # testAfter:
+  # #   runs-on: ubuntu-latest
+  # #   needs: [tagIfNewVersion]
+  # #   steps:
+  # #     - uses: actions/download-artifact@v2
+  # #       continue-on-error: true
+  # #       with:
+  # #         name: last-validated-commit-hash
+  # #         path: /home/runner
+  # #     - run: cat /home/runner/last-validated-commit-hash
