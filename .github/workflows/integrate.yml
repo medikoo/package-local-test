@@ -30,6 +30,8 @@ jobs:
       # - run: echo "${{ github.event.workflow_run.id }}"
       - name: Test previous action
         uses: medikoo/previous-commit-hash-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       # - name: Download Artifacts from Previous Workflow
       #   uses: synergy-au/download-workflow-artifacts-action@v1
       #   with:
