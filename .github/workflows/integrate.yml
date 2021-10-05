@@ -31,13 +31,13 @@ jobs:
       - name: Test previous action
         uses: medikoo/previous-commit-hash-action@main
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.USER_GITHUB_TOKEN }}
       # - name: Download Artifacts from Previous Workflow
       #   uses: synergy-au/download-workflow-artifacts-action@v1
       #   with:
       #     # You can get this from the workflow_run event. A workflow run ID is required.
       #     workflow-run-id: ${{ github.event.workflow_run.id }}
-      # - run: cat /home/runner/last-validated-commit-hash
+      - run: cat /home/runner/last-validated-commit-hash
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: last-validated-commit-hash
