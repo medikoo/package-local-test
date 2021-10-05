@@ -33,6 +33,8 @@ jobs:
         uses: medikoo/previous-commit-hash-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: By GA
+        run: echo '${{ github.event.before }}'
       - env:
           PREVIOUS_COMMIT_HASH: ${{ steps.previousCommitHash.outputs.previousCommitHash }}
         run: echo '${{ steps.previousCommitHash.outputs.previousCommitHash }}'
@@ -92,4 +94,6 @@ jobs:
         uses: medikoo/previous-commit-hash-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: By GA
+        run: echo '${{ github.event.before }}'
       - run: echo  ${{ steps.previousCommitHash.outputs.previousCommitHash }}
