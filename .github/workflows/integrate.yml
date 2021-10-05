@@ -31,8 +31,6 @@ jobs:
       - name: Test previous action
         id: previousCommitHash
         uses: medikoo/previous-commit-hash-action@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - env:
           PREVIOUS_COMMIT_HASH: ${{ steps.previousCommitHash.outputs.previousCommitHash }}
         run: echo '${{ steps.previousCommitHash.outputs.previousCommitHash }}'
@@ -90,6 +88,4 @@ jobs:
       - name: Test previous action
         id: previousCommitHash
         uses: medikoo/previous-commit-hash-action@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - run: echo  ${{ steps.previousCommitHash.outputs.previousCommitHash }}
