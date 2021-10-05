@@ -68,6 +68,7 @@ jobs:
   # #     - run: cat /home/runner/last-validated-commit-hash
   testAfter:
     runs-on: ubuntu-latest
+    needs: [tagIfNewVersion]
     steps:
       # - name: Checkout repository
       #   uses: actions/checkout@v2
