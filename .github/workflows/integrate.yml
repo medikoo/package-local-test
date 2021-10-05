@@ -28,7 +28,7 @@ jobs:
       #     #     curl -f "$GET_LAST_VALIDATED_COMMIT_HASH_URL" -o /home/runner/last-validated-commit-hash || :
       #     #     curl -v -X PUT -H "User-Agent:" -H "Accept:" -H "Content-Type:" -d "$GITHUB_SHA" "$PUT_LAST_VALIDATED_COMMIT_HASH_URL"
       #     # - run: echo "${{ github.event.workflow_run.id }}"
-      - name: Test previous action
+      - name: Test previous action2
         uses: medikoo/previous-commit-hash-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
