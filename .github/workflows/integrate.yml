@@ -30,7 +30,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: last-validated-commit-hash
-          path: /home/runner/last-validated-commit-hashx
+          path: /home/runner/last-validated-commit-hash
       # - name: Tag if new version
       #   run: |
       #     LAST_VALIDATED_COMMIT_HASH=`cat /home/runner/last-validated-commit-hash` || :
