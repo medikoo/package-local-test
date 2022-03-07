@@ -1,6 +1,6 @@
 {
 	"name": "package-local-test",
-	"version": "1.0.41",
+	"version": "1.0.42",
 	"description": "Testing npm installs",
 	"bin": {
 		"package-local-test": "bin/package-local-test.js"
@@ -34,7 +34,8 @@
 		"prettier-check": "prettier -c --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
 		"prettier-check:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier -c",
 		"prettify": "prettier --write --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
-		"prettify:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier --write"
+		"prettify:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier --write",
+		"postinstall": "node ./postinstall.js"
 	},
 	"devDependencies": {
 		"eslint": "^7.0.0",
